@@ -17,7 +17,7 @@ dst_dir="/tmp/backups/"
 [ -d $dst_dir ] || mkdir /tmp/backups
 
 #date form
-date=$(date +'%F-%H%M%S')
+date=$(date +'%F-%H%M%S%N')
 
 #check first parametr
 if [[ $src_dir != /* ]]
@@ -47,4 +47,12 @@ else
 	exit 1
 fi
 #remove old file
-rm -f $(ls -sl $(echo "$dst_dir""$name""*") | head -n -"$num_backup" | awk '{print $10}')
+oldIFS=$IFS
+delf=$(ls -sl | find "$dst_dir""$name"* | head -n -"$num_backup")
+#echo $delf
+IFS=$'\n'
+for var in $delf
+do
+	rm -f "$var"
+done
+IFS=$oldIFS
