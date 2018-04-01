@@ -37,7 +37,7 @@ fi
 if [[ -d "$src_dir" || -f "$src_dir" ]]
 then
 #form file name and tar
-	name=$(echo "$src_dir" | sed -r 's/^\/*//g' | sed 's/\/\/*/-/g')
+	name=$(echo "$src_dir" | sed -r 's/^\/*//g' | sed -r 's/\/$//g' | sed 's/\/\/*/-/g')
 #	echo "$name"
 	dst_name=$(echo "$name"-"$date".tar.gz)
 #	echo $dst_dir"_"$dst_name"_"$src_dir
