@@ -8,8 +8,8 @@ then
 	exit 1
 fi
 
-src_dir=$1
-num_backup=$2
+src_dir="$1"
+num_backup="$2"
 
 #check backup dir
 dst_dir="/tmp/backups/"
